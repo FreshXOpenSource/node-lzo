@@ -233,16 +233,15 @@ lzo_decompress(const Arguments &args)
 }
 
 
-
-
-extern "C"{
-
-void init (Handle<Object> target)
-{
-    HandleScope scope;
-    target->Set(String::New("compress"), FunctionTemplate::New(lzo_compress)->GetFunction());
-    target->Set(String::New("decompress"), FunctionTemplate::New(lzo_decompress)->GetFunction());
-    target->Set(String::New("version_string"), FunctionTemplate::New(lzo_version_string)->GetFunction());
-    target->Set(String::New("version_date"), FunctionTemplate::New(lzo_version_date)->GetFunction());
-}
+extern "C" {
+    
+    void init (Handle<Object> target)
+    {
+        HandleScope scope;
+        target->Set(String::New("compress"), FunctionTemplate::New(lzo_compress)->GetFunction());
+        target->Set(String::New("decompress"), FunctionTemplate::New(lzo_decompress)->GetFunction());
+        target->Set(String::New("version_string"), FunctionTemplate::New(lzo_version_string)->GetFunction());
+        target->Set(String::New("version_date"), FunctionTemplate::New(lzo_version_date)->GetFunction());
+    }
     NODE_MODULE (quicklzo, init)    
+}
